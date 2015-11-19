@@ -1,5 +1,8 @@
 # registry-migrate
 
+[![build
+status](https://secure.travis-ci.org/jcrugzz/registry-migrate.svg)](http://travis-ci.org/jcrugzz/registry-migrate)
+
 Migrate a set of packages from a source registry into a target registry.
 
 ## Install
