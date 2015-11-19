@@ -6,6 +6,7 @@ var parallel = require('parallel-transform');
 var async = require('async');
 var writeFile = require('write-file-atomic');
 var debug = require('diagnostics')('registry-migrate:modify');
+var tryParse = require('json-try-parse');
 
 module.exports = Modify;
 
@@ -99,17 +100,3 @@ Modify.prototype.read = function (pkgPath, callback) {
     callback(null, json);
   });
 };
-
-
-//
-// fuck just make this a module
-//
-function tryParse(data) {
-  var json;
-
-  try {
-    json = JSON.parse(data);
-  } catch (ex) {};
-
-  return json;
-}

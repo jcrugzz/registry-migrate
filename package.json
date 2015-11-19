@@ -36,6 +36,7 @@
     "concurrent-writable": "^1.0.4",
     "diagnostics": "^1.0.1",
     "hyperquest": "^1.2.0",
+    "json-try-parse": "^1.0.0",
     "mkdirp": "^0.5.1",
     "one-time": "0.0.4",
     "parallel-transform": "^0.2.2",

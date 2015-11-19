@@ -8,6 +8,7 @@ var parallel = require('parallel-transform');
 var async = require('async');
 var debug = require('diagnostics')('registry-migrate:fetch');
 var mkdirp = require('mkdirp');
+var tryParse = require('json-try-parse');
 
 module.exports = Fetch;
 
@@ -114,13 +115,3 @@ Fetch.prototype.iterate = function (name, versions, callback) {
     callback(err, built);
   });
 };
-
-function tryParse(data) {
-  var json;
-
-  try {
-    json = JSON.parse(data);
-  } catch (ex) {}
-
-  return json;
-}
