@@ -1,8 +1,14 @@
 # registry-migrate
 
-WIP
+Migrate a set of packages from a source registry into a target registry.
 
-Migrate a set of packages into a target registry
+## Install
+
+```sh
+npm install registry-migrate --save
+```
+
+## Example
 
 ```js
 var migrate = require('registry-migration');
@@ -31,3 +37,6 @@ packageStream(opts)
   });
   
 ```
+
+## License
+MIT
