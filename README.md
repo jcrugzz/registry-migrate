@@ -22,7 +22,8 @@ migrate({
   // Set of packages to migrate, could be strings or full package documents
   packages: ['hyperquest', 'changes-stream'] 
 }, function (err) {
-
+  if (err) return console.error(err);
+  console.log('Finished!');
 });
 
 //
@@ -36,7 +37,7 @@ packageStream(opts)
   }))
   .on('error', onError)
   .on('finish', function () {
-  
+    console.log('Finished!'); 
   });
   
 ```
