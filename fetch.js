@@ -39,29 +39,49 @@ function Fetch(source, opts) {
  */
 Fetch.prototype.transform = function transform(data, callback) {
   var name = data.name;
+
   //
-  // 1. Get the full package with all versions and tarball URLs
+  // 1. Detect if we are given a data structure
+  //
+  if (Array.isArray(data.versions)
+      && data.versions[0].dist
+      && data.versions[0].dist.tarball) {
+    //
+    // Unpack all the package versions onto disk
+    //
+    return this.unpack(name, data, callback);
+  }
+
+  //
+  // 2. Get the full package with all versions and tarball URLs
   //
   this.get(name, (err, pkg) => {
     if (err) return callback(err);
     //
-    // 2. Iterate through them all and pull and unpack them onto disk
+    // 3. Unpack all the versions onto disk
     //
-    mkdirp(path.join(this.dir, name), err => {
-      if (err) return callback(err);
-      this.iterate(name, pkg.versions, (err, built) => {
-        //
-        // 3. Return a data structure with the mappings to the full path to all
-        // the versions
-        // {
-        //   name: 'package-name',
-        //   versions: {
-        //     '0.9.0': '/path/on/disk/0.9.0/package-name'
-        //   }
-        // }
-        //
-        callback(err, built);
-      });
+    this.unpack(name, pkg, callback);
+  });
+};
+
+Fetch.prototype.unpack = function unpack(name, pkg, callback) {
+  //
+  // 1. Iterate through them all and pull and unpack them onto disk
+  //
+  mkdirp(path.join(this.dir, name), err => {
+    if (err) return callback(err);
+    this.iterate(name, pkg.versions, (err, built) => {
+      //
+      // 2. Return a data structure with the mappings to the full path to all
+      // the versions
+      // {
+      //   name: 'package-name',
+      //   versions: {
+      //     '0.9.0': '/path/on/disk/0.9.0/package-name'
+      //   }
+      // }
+      //
+      callback(err, built);
     });
   });
 };
