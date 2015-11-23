@@ -66,10 +66,13 @@ Fetch.prototype.transform = function transform(data, callback) {
 
 Fetch.prototype.unpack = function unpack(name, pkg, callback) {
   //
-  // 1. Iterate through them all and pull and unpack them onto disk
+  // 1. Make dir for package
   //
   mkdirp(path.join(this.dir, name), err => {
     if (err) return callback(err);
+    //
+    // 2. Iterate through them all and pull and unpack them onto disk
+    //
     this.iterate(name, pkg.versions, (err, built) => {
       //
       // 2. Return a data structure with the mappings to the full path to all
