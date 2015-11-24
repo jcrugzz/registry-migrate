@@ -39,13 +39,16 @@ function Fetch(source, opts) {
  */
 Fetch.prototype.transform = function transform(data, callback) {
   var name = data.name;
-
+  //
+  // Sniff the versions object and see if it exists
+  //
+  var version = data && data.versions && Object.keys(versions)[0];
   //
   // 1. Detect if we are given a data structure
   //
-  if (Array.isArray(data.versions)
-      && data.versions[0].dist
-      && data.versions[0].dist.tarball) {
+  if (version
+      && data.versions[version].dist
+      && data.versions[version].dist.tarball) {
     //
     // Unpack all the package versions onto disk
     //
