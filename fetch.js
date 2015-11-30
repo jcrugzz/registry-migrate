@@ -42,7 +42,7 @@ Fetch.prototype.transform = function transform(data, callback) {
   //
   // Sniff the versions object and see if it exists
   //
-  var version = data && data.versions && Object.keys(versions)[0];
+  var version = data && data.versions && Object.keys(data.versions)[0];
   //
   // 1. Detect if we are given a data structure
   //
