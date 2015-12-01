@@ -1,6 +1,6 @@
 {
   "name": "registry-migrate",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A simple utility to migrate a set of packages or a given stream of packages from one registry to another",
   "main": "index.js",
   "scripts": {
