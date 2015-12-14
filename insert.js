@@ -55,7 +55,7 @@ Insert.prototype.publish = function (dir, callback) {
   // since we remove any possible `.npmrc` we may want to use a path to an
   // `.npmrc` if this is not sufficient
   //
-  var args = ['publish'];
+  var args = ['publish', '--ignore-scripts'];
   var env = Object.keys(process.env).reduce(function (acc, key) {
     acc[key] = process.env[key];
     return acc;
