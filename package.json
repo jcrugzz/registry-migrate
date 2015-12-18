@@ -38,6 +38,7 @@
     "hyperquest": "^1.2.0",
     "json-try-parse": "^1.0.0",
     "mkdirp": "^0.5.1",
+    "nerf-gun": "^1.0.1",
     "one-time": "0.0.4",
     "parallel-transform": "^0.2.2",
     "pumpify": "^1.3.3",
