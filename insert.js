@@ -74,6 +74,7 @@ Insert.prototype.publish = function (dir, callback) {
     ${nerfdart}:always-auth=false
     ${nerfdart}:_password=${pass}
     ${nerfdart}:username=${user}
+    # email is required by npm, .invalid is a banned TLD, info purposes only
     ${nerfdart}:email=jcrugzz+registry-migrate@github.com.invalid
     `
   
