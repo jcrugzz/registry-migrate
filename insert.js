@@ -113,6 +113,7 @@ Insert.prototype.publish = function (dir, callback) {
       if (err) { return fn(err); }
       if (data && data.length) {
         debug('Stderr output %s', data.toString());
+        fn();
       }
     }));
   
