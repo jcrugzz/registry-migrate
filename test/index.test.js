@@ -27,7 +27,7 @@ describe('index.test', function () {
   it('should be able to migrate a set of given packages from source -> dest', done => {
     migrate({
       source: 'https://registry.npmjs.org',
-      destination: 'http://localhost:1337',
+      destination: 'http://user:pass@localhost:1337',
       packages: ['changes-stream', 'hyperquest']
     }, err => {
       assume(err).to.be.falsey();
