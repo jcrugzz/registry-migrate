@@ -97,9 +97,9 @@ Fetch.prototype.unpack = function unpack(name, pkg, callback) {
  */
 Fetch.prototype.get = function (name, callback) {
   var fn = once(callback);
-  debug('Get full package from registry');
+  debug('Get full package %s from registry', name);
 
-  hyperquest(url.resolve(this.source, name))
+  hyperquest(url.resolve(this.source, encodeURIComponent(name)))
     .on('error', fn)
     .pipe(concat({ encoding: 'string' }, function (data) {
 
@@ -126,7 +126,7 @@ Fetch.prototype.iterate = function (name, versions, callback) {
     //
     var fullPath = path.join(this.dir, name, pkg.version)
     baltar.pull({
-      url: pkg.dist.tarball,
+      url: this._addAuth(pkg.dist.tarball),
       path: fullPath
     }, (err, entries) => {
       if (err) return next(err);
@@ -140,4 +140,12 @@ Fetch.prototype.iterate = function (name, versions, callback) {
   }, err => {
     callback(err, built);
   });
+};
+
+Fetch.prototype._addAuth = function (uri) {
+  const auth = url.parse(this.source).auth;
+  if (!auth) return uri;
+  const parsed = url.parse(uri);
+  parsed.auth = auth;
+  return parsed.format();
 };
